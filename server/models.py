@@ -15,10 +15,10 @@ class Author(db.Model):
     # Add validators 
     @validates('name')
     def validate_name(self, key, name):
-        # name must be unique
         if not name:
             raise ValueError("Name field is required.")
-        author = db.session.query(Author.id).filter_by(name=name).first()
+        author = db.session.query(Author.id).filter_by(name = name).first()
+        # author.query.filter_by(name = name).first()
         if author is not None:
             raise ValueError("Name must be unique.")
         return name
